@@ -1,8 +1,9 @@
 use std::path::{Path, PathBuf};
 
+use serde::Serialize;
+
 use super::tera_builtins;
 use crate::{controller::views::ViewRenderer, Error, Result};
-use serde::Serialize;
 
 pub static DEFAULT_ASSET_FOLDER: &str = "assets";
 
@@ -86,7 +87,7 @@ impl ViewRenderer for TeraView {
         }
 
         #[cfg(not(debug_assertions))]
-        Ok(self.tera.render(key, &context)?);
+        Ok(self.tera.render(key, &context)?)
     }
 }
 
